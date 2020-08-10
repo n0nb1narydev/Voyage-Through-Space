@@ -12,6 +12,8 @@ public class Player : MonoBehaviour //Unity Specific Term
         [SerializeField]
             private float _fireRate = 0.15f;
             private float _canFire = -1f;
+        [SerializeField]    
+            private int _lives = 3;
         
 
     void Start()
@@ -64,7 +66,14 @@ public class Player : MonoBehaviour //Unity Specific Term
             
         Vector3 offset = new Vector3(0, 0.8f, 0);
         Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity); //default rotation 99% of the time what you'll use.
-        
+    }
+    public void Damage()
+    {
+        _lives--;
 
+        if(_lives < 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
