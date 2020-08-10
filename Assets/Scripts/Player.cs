@@ -54,9 +54,9 @@ public class Player : MonoBehaviour //Unity Specific Term
         if( transform.position.y >= 0 )
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
-        } else if(transform.position.y <= -3.8f)
+        } else if(transform.position.y <= -3.4f)
         {
-            transform.position = new Vector3( transform.position.x, -3.8f, 0);
+            transform.position = new Vector3( transform.position.x, -3.4f, 0);
         }
         if (transform.position.x >= 11.3f)
         {
