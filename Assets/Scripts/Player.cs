@@ -70,7 +70,7 @@ public class Player : MonoBehaviour //Unity Specific Term
     {
         _canFire = Time.time + _fireRate;
             
-        Vector3 offset = new Vector3(0, 0.8f, 0);
+        Vector3 offset = new Vector3(0, 1.05f, 0);
         Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity); //default rotation 99% of the time what you'll use.
     }
     public void Damage()
