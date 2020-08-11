@@ -15,6 +15,7 @@ public class Player : MonoBehaviour //Unity Specific Term
         [SerializeField]    
             private int _lives = 3;
             private SpawnManager _spawnManager;
+        [SerializeField]
             private bool _isTripleShotActive = false;
         [SerializeField]
             private GameObject _tripleShot;
@@ -91,5 +92,16 @@ public class Player : MonoBehaviour //Unity Specific Term
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
+    }
+    public void TripleShotActive()
+    {
+        _isTripleShotActive = true;
+        StartCoroutine(TripleShotPowerDown());
+    }
+   
+    IEnumerator TripleShotPowerDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isTripleShotActive = false;
     }
 }
