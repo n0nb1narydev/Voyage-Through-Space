@@ -75,7 +75,7 @@ public class Player : MonoBehaviour //Unity Specific Term
             
         if(_isTripleShotActive)
         {
-          Vector3 offset2 = new Vector3(-.6f,0 , 0);
+          Vector3 offset2 = new Vector3(-2.1f,0 , 0);
           Instantiate(_tripleShot, transform.position + offset2, Quaternion.identity);  
         } else
         {

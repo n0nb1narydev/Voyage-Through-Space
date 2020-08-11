@@ -28,8 +28,13 @@ public class Powerup : MonoBehaviour
         if(other.tag == "Player")
         {
             //communicate with the player script other
-            other.TripleShotActive();
+            //create handle to component
+            Player player = other.transform.GetComponent<Player>();
+            if(player != null)
+            {
+            player.TripleShotActive();
             Destroy(this.gameObject);
+            }
         }
 
     }
