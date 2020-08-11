@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
-        yield return new WaitForSeconds(Random.Range(5.0f, 30.0f));
+        yield return new WaitForSeconds(Random.Range(10.0f, 30.0f));
         Vector3 posToSpawn = new Vector3 (Random.Range(-8.0f, 8.0f), 7, 0);
         Instantiate(_tripleShotPU, posToSpawn, Quaternion.identity);
 
