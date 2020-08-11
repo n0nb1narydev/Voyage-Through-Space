@@ -15,7 +15,9 @@ public class Player : MonoBehaviour //Unity Specific Term
         [SerializeField]    
             private int _lives = 3;
             private SpawnManager _spawnManager;
-        
+            private bool _isTripleShotActive = false;
+        [SerializeField]
+            private GameObject _tripleShot;
 
     void Start()
     {
@@ -70,8 +72,15 @@ public class Player : MonoBehaviour //Unity Specific Term
     {
         _canFire = Time.time + _fireRate;
             
-        Vector3 offset = new Vector3(0, 1.05f, 0);
-        Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity); //default rotation 99% of the time what you'll use.
+        if(_isTripleShotActive)
+        {
+          Vector3 offset2 = new Vector3(-.6f,0 , 0);
+          Instantiate(_tripleShot, transform.position + offset2, Quaternion.identity);  
+        } else
+        {
+            Vector3 offset1 = new Vector3(0,1.05f,0);
+            Instantiate(_laserPrefab, transform.position + offset1, Quaternion.identity); //default rotation 99% of the time what you'll use.
+        }
     }
     public void Damage()
     {
