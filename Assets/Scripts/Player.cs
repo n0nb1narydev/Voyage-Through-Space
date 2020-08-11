@@ -18,7 +18,10 @@ public class Player : MonoBehaviour //Unity Specific Term
         [SerializeField]
             private bool _isTripleShotActive = false;
         [SerializeField]
+            private bool _isWarpDriveActive = false;
+        [SerializeField]
             private GameObject _tripleShotPrefab;
+        
 
     void Start()
     {
@@ -103,5 +106,16 @@ public class Player : MonoBehaviour //Unity Specific Term
     {
         yield return new WaitForSeconds(5.0f);
         _isTripleShotActive = false;
+    }
+    public void WarpDriveActive()
+    {
+        _isWarpDriveActive = true;
+        _speed = 8;
+        StartCoroutine(WarpDrivePowerDown());
+    }
+    IEnumerator WarpDrivePowerDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isWarpDriveActive = false;
     }
 }
