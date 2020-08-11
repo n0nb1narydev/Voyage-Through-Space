@@ -5,20 +5,20 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _enemyPrefab;
+        private GameObject _enemyPrefab;
     [SerializeField]
-    private GameObject _enemyContainer;
+        private GameObject _enemyContainer;
     [SerializeField]
-    private GameObject _borgCubePrefab;
+        private GameObject _borgCubePrefab;
+        private bool _stopSpawning = true;
     [SerializeField]
-    private GameObject _tripleShotPrefab;
-
-    private bool _stopSpawning = true;
+        private GameObject[] powerups;
     void Start()
     {
        StartCoroutine(SpawnRoutine());
        StartCoroutine(SpawnBoss());
        StartCoroutine(SpawnPowerUps());
+
     }
     void Update()
     {
@@ -38,19 +38,26 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
-        yield return new WaitForSeconds(Random.Range(10, 30));
-        Vector3 posToSpawn = new Vector3 (Random.Range(-8.0f, 8.0f), 7, 0);
-        Instantiate(_tripleShotPrefab, posToSpawn, Quaternion.identity);
-        
+       while(_stopSpawning)
+       {
+            yield return new WaitForSeconds(Random.Range(7, 30));
+            Vector3 posToSpawn = new Vector3 (Random.Range(-8.0f, 8.0f), 7, 0);
+            int randomPowerUp = Range.Range(0, 2);
+            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+       }
     }
     IEnumerator SpawnBoss()
     {
-        yield return new WaitForSeconds(Random.Range(10, 30));
-        Vector3 posToSpawn = new Vector3(0, 18, 0);
-        Instantiate( _borgCubePrefab, posToSpawn, Quaternion.identity);
+        while(_stopSpawning)
+        {
+            yield return new WaitForSeconds(Random.Range(5, 15));
+            Vector3 posToSpawn = new Vector3(0, 18, 0);
+            Instantiate( _borgCubePrefab, posToSpawn, Quaternion.identity);
+        }
     }
     public void OnPlayerDeath()
     {
         _stopSpawning = false;
     }
+    
 }

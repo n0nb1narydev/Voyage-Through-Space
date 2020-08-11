@@ -6,7 +6,9 @@ public class Player : MonoBehaviour //Unity Specific Term
 {
 
         [SerializeField] //allows you to read/overwrite it in the Inspector
-            private float _speed = 3.5f; 
+            private float _speed = 5f; 
+        [SerializeField]
+            private int _speedMultiplier = 2;
         [SerializeField]
             private GameObject _laserPrefab;
         [SerializeField]
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour //Unity Specific Term
             private bool _isWarpDriveActive = false;
         [SerializeField]
             private GameObject _tripleShotPrefab;
+        
         
 
     void Start()
@@ -53,7 +56,16 @@ public class Player : MonoBehaviour //Unity Specific Term
             
         Vector3  direction = new Vector3(horizontalInput, verticalInput, 0); //make a Vector3 variable
         
-        transform.Translate(direction * _speed * Time.deltaTime);
+       
+
+        if (_isWarpDriveActive == true)
+        {
+            transform.Translate(direction * _speed * _speedMultiplier * Time.deltaTime);   
+        }
+        else 
+        {
+            transform.Translate(direction * _speed * Time.deltaTime);
+        }
             
     //Set Player Bounds and Ship Wrap
         // transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.postion.y, -3.8f, 0), 0); Gives error CS1061
@@ -110,12 +122,13 @@ public class Player : MonoBehaviour //Unity Specific Term
     public void WarpDriveActive()
     {
         _isWarpDriveActive = true;
-        _speed = 8;
+        _speed *= _speedMultiplier;
         StartCoroutine(WarpDrivePowerDown());
     }
     IEnumerator WarpDrivePowerDown()
     {
         yield return new WaitForSeconds(5.0f);
+        _speed /= _speedMultiplier;
         _isWarpDriveActive = false;
     }
 }

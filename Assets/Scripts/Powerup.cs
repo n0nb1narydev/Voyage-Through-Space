@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
- [SerializeField]
+
+    //ID for powerups 
+    //0 = triple shot
+    //1  = speed
+    //2 = shields
+    [SerializeField]
+        private int powerupID;
+    [SerializeField]
         private float _speed = 3;
 
     
@@ -25,9 +32,34 @@ public class Powerup : MonoBehaviour
             Player player = other.transform.GetComponent<Player>();
             if(player != null)
             {
-            player.TripleShotActive();
-            Destroy(this.gameObject);
+                // if(powerupID == 0)
+                // {
+                //     player.TripleShotActive();
+                //     Debug.log("Tripleshot Collected");
+                // } 
+                // else if(powerupID == 1)
+                // {
+                //     player.WarpDriveActive();
+                //     Debug.log("Speed Boost Collected");
+                // }
+                // else if (powerupID == 2)
+                // {
+                //     Debug.log("Speed Boost Collected");
+                // } Convert to Switch Statement
+                switch(powerupID)
+                {
+                    case 0:
+                        player.TripleShotActive();
+                        break;
+                    case 1:
+                        player.WarpDriveActive();
+                        break;
+                    case 2:
+                        break;
+                    //default: would be the else
+                }
             }
+            Destroy(this.gameObject);
         }
 
     }
