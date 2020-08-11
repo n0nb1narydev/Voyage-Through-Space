@@ -6,13 +6,8 @@ public class Powerup : MonoBehaviour
 {
  [SerializeField]
         private float _speed = 3;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    
     void Update()
     {
       transform.Translate(Vector3.down * _speed * Time.deltaTime);
@@ -27,8 +22,6 @@ public class Powerup : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            //communicate with the player script other
-            //create handle to component
             Player player = other.transform.GetComponent<Player>();
             if(player != null)
             {

@@ -9,9 +9,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
-    private GameObject _borgCube;
+    private GameObject _borgCubePrefab;
     [SerializeField]
-    private GameObject _tripleShotPU;
+    private GameObject _tripleShotPrefab;
 
     private bool _stopSpawning = true;
     void Start()
@@ -38,16 +38,16 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
-        yield return new WaitForSeconds(Random.Range(10.0f, 30.0f));
+        yield return new WaitForSeconds(Random.Range(10, 30));
         Vector3 posToSpawn = new Vector3 (Random.Range(-8.0f, 8.0f), 7, 0);
-        Instantiate(_tripleShotPU, posToSpawn, Quaternion.identity);
-
+        Instantiate(_tripleShotPrefab, posToSpawn, Quaternion.identity);
+        
     }
     IEnumerator SpawnBoss()
     {
-        yield return new WaitForSeconds(Random.Range(10.0f, 30.0f));
+        yield return new WaitForSeconds(Random.Range(10, 30));
         Vector3 posToSpawn = new Vector3(0, 18, 0);
-        Instantiate( _borgCube, posToSpawn, Quaternion.identity);
+        Instantiate( _borgCubePrefab, posToSpawn, Quaternion.identity);
     }
     public void OnPlayerDeath()
     {
