@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine; 
 
 public class Player : MonoBehaviour //Unity Specific Term
-{
 
+{
+        
         [SerializeField] //allows you to read/overwrite it in the Inspector
             private float _speed = 5f; 
         [SerializeField]
@@ -21,10 +22,12 @@ public class Player : MonoBehaviour //Unity Specific Term
             private int _lives = 3;
             private SpawnManager _spawnManager;
             private UI_Manager _uiManager;
-
+        [SerializeField]
             private bool _isTripleShotActive = false;
+        [SerializeField]
             private bool _isWarpDriveActive = false;
-            private bool _isShieldsUpActive = false;
+        [SerializeField]
+            public bool _isShieldsUpActive = false;
         
         [SerializeField]
             private GameObject _shieldVisualizer;
@@ -56,20 +59,26 @@ public class Player : MonoBehaviour //Unity Specific Term
        
     private void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.tag == "BorgCube" && _isShieldsUpActive)
+            if(other.tag == "BorgCube")
             {
-                    Damage(this.gameObject);
+                if(_isShieldsUpActive == true)
+                {
                     _isShieldsUpActive = false;
                     Destroy(other.gameObject);
-            } else 
+                    _lives --;
+                    _shieldVisualizer.SetActive(false);
+                     _uiManager.UpdateLives(_lives);
+                } else 
+                {
+                    _lives = 0;
+                     _uiManager.UpdateLives(_lives);    
+                    Destroy(this.gameObject);
+                    Destroy(other.gameObject);
+                }
+            } else
             {
-                Destroy(this.gameObject);
-                Destroy(this.gameObject);
-                Destroy(this.gameObject);
-
+                return;
             }
-            
-
         }
 
         
