@@ -122,13 +122,13 @@ public class Player : MonoBehaviour //Unity Specific Term
     public void WarpDriveActive()
     {
         _isWarpDriveActive = true;
-        _speed *= _speedMultiplier;
+    
         StartCoroutine(WarpDrivePowerDown());
     }
     IEnumerator WarpDrivePowerDown()
     {
         yield return new WaitForSeconds(5.0f);
-        _speed /= _speedMultiplier;
+       
         _isWarpDriveActive = false;
     }
 }
