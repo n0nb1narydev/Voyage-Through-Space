@@ -8,7 +8,12 @@ public class Enemy : MonoBehaviour
         private float _speed = 4f;
         private GameObject _enemyPrefab;
 
+        private Player _player;
 
+    void Start() 
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>(); 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -26,7 +31,6 @@ public class Enemy : MonoBehaviour
         // Debug.Log("Hit: " + other.transform.name);
         if(other.tag == "Player")
         {
-            Player player = other.transform.GetComponent<Player>(); 
             
             if (player != null) // Null Checking
             {
@@ -34,14 +38,12 @@ public class Enemy : MonoBehaviour
             }
 
             Destroy(this.gameObject); 
-            // other.transform (cannot do other.player)
         }
         
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
-           
         }
     }
 }

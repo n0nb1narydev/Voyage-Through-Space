@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
     {
        while(_stopSpawning)
        {
-            yield return new WaitForSeconds(Random.Range(7, 30));
+            yield return new WaitForSeconds(Random.Range(7, 12));
             Vector3 posToSpawn = new Vector3 (Random.Range(-8.0f, 8.0f), 7, 0);
             int randomPowerUp = Random.Range(0, 3);
             Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
@@ -50,7 +50,7 @@ public class SpawnManager : MonoBehaviour
     {
         while(_stopSpawning)
         {
-            yield return new WaitForSeconds(Random.Range(5, 15));
+            yield return new WaitForSeconds(Random.Range(10, 30));
             Vector3 posToSpawn = new Vector3(0, 18, 0);
             Instantiate( _borgCubePrefab, posToSpawn, Quaternion.identity);
         }

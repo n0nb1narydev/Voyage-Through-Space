@@ -11,6 +11,7 @@ public class BorgCube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player player = other.transform.GetComponent<Player>(); 
         
     }
 
@@ -27,8 +28,9 @@ public class BorgCube : MonoBehaviour
             Destroy(other.gameObject);
         }
         if(other.tag == "Player")
-        {
-            Destroy(other.gameObject);
+        {      
+                    Destroy(other.gameObject);
+
         }
 
     }

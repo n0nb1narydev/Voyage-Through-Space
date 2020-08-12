@@ -9,9 +9,7 @@ public class Player : MonoBehaviour //Unity Specific Term
             private float _speed = 5f; 
         [SerializeField]
             private int _speedMultiplier = 2;
-        [SerializeField]
             private GameObject _laserPrefab;
-        [SerializeField]
             private GameObject _tripleShotPrefab;
         [SerializeField]
             private float _fireRate = 0.15f;
@@ -19,15 +17,16 @@ public class Player : MonoBehaviour //Unity Specific Term
         [SerializeField]    
             private int _lives = 3;
             private SpawnManager _spawnManager;
-        [SerializeField]
+
             private bool _isTripleShotActive = false;
-        [SerializeField]
             private bool _isWarpDriveActive = false;
-        [SerializeField]
             private bool _isShieldsUpActive = false;
         
-        
-        
+        [SerializeField]
+            private GameObject _shieldVisualizer;
+        [SerializeField]
+            private int _score;
+
 
     void Start()
     {
@@ -105,7 +104,9 @@ public class Player : MonoBehaviour //Unity Specific Term
     {
         if(_isShieldsUpActive == true)
         {
-            _lives = _lives;
+            _isShieldsUpActive = false;
+            _shieldVisualizer.SetActive(false);
+            return;
         } else 
         {
         _lives--;
@@ -143,12 +144,6 @@ public class Player : MonoBehaviour //Unity Specific Term
     public void ShieldsUpActive()
     {
         _isShieldsUpActive = true;
-
-        StartCoroutine(ShieldsUpPowerDown());
-    }
-    IEnumerator ShieldsUpPowerDown()
-    {
-        yield return new WaitForSeconds (5.0f);
-        _isShieldsUpActive = false;
+        _shieldVisualizer.SetActive(true);
     }
 }
