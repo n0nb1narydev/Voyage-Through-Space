@@ -28,6 +28,7 @@ public class Player : MonoBehaviour //Unity Specific Term
         
         [SerializeField]
             private GameObject _shieldVisualizer;
+        
 
 
     void Start()
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour //Unity Specific Term
             Debug.LogError("The spawn manager is NULL");
         }
        
+       
     }
 
     void Update() // runs 60 frames per second
@@ -50,9 +52,28 @@ public class Player : MonoBehaviour //Unity Specific Term
         {
             FireLaser();
         }
+    }   
+       
+    private void OnTriggerEnter2D(Collider2D other)
+        {
+            if(other.tag == "BorgCube" && _isShieldsUpActive)
+            {
+                    Damage(this.gameObject);
+                    _isShieldsUpActive = false;
+                    Destroy(other.gameObject);
+            } else 
+            {
+                Destroy(this.gameObject);
+                Destroy(this.gameObject);
+                Destroy(this.gameObject);
+
+            }
+            
+
+        }
 
         
-    }
+
 
 
     void CalculateMovement()
@@ -111,17 +132,19 @@ public class Player : MonoBehaviour //Unity Specific Term
             _isShieldsUpActive = false;
             _shieldVisualizer.SetActive(false);
             return;
-        } else 
+        } else
         {
             _lives--;
            
             _uiManager.UpdateLives(_lives);
+           
         }
 
         if(_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
+
         }
     }
     public void TripleShotActive()

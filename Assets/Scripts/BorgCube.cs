@@ -26,12 +26,6 @@ public class BorgCube : MonoBehaviour
             this.Damage();
             Destroy(other.gameObject);
         }
-        if(other.tag == "Player")
-        {      
-                    Destroy(other.gameObject);
-
-        }
-
     }
 
     public void Damage()
@@ -40,7 +34,7 @@ public class BorgCube : MonoBehaviour
 
         if(_lives < 1)
         {
-            ScoreScript.scoreValue += 50;
+            ScoreScript.scoreValue += 100;
             Destroy(this.gameObject);
         }
     }
