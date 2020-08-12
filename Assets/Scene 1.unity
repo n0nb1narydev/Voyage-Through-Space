@@ -204,6 +204,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &143325587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143325588}
+  - component: {fileID: 143325590}
+  - component: {fileID: 143325589}
+  m_Layer: 5
+  m_Name: LivesDisplayImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &143325588
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143325587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 307625991}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 58, y: -49}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &143325589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143325587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 9844e86b28cf5445a84ad25ee14f79ed, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &143325590
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143325587}
+  m_CullTransparentMesh: 0
 --- !u!1 &161316042
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +289,7 @@ GameObject:
   - component: {fileID: 161316043}
   - component: {fileID: 161316045}
   - component: {fileID: 161316044}
+  - component: {fileID: 161316046}
   m_Layer: 5
   m_Name: Score_Text
   m_TagString: Untagged
@@ -282,6 +357,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161316042}
   m_CullTransparentMesh: 0
+--- !u!114 &161316046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161316042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f337207d274465dbdf246eba3e1121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &307625987
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +461,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 161316043}
+  - {fileID: 143325588}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -391,9 +479,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 307625987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f2fe99455c804e9288d18b75d9d751e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7478404c323f64a948e2f837b3fae5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _livesImg: {fileID: 143325589}
+  _liveSprites:
+  - {fileID: 21300000, guid: 6baf3621d84414a769e6445de71e2f97, type: 3}
+  - {fileID: 21300000, guid: ee7f902e3e78d492c8be1407f2133d43, type: 3}
+  - {fileID: 21300000, guid: b449a03f4885e4cf391aee674c2a2e17, type: 3}
+  - {fileID: 21300000, guid: 9844e86b28cf5445a84ad25ee14f79ed, type: 3}
 --- !u!1 &809645108
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,9 +750,6 @@ MonoBehaviour:
     type: 3}
   _fireRate: 0.15
   _lives: 3
-  _isTripleShotActive: 0
-  _isWarpDriveActive: 0
-  _isShieldsUpActive: 0
   _shieldVisualizer: {fileID: 815849698}
 --- !u!212 &1497456712
 SpriteRenderer:

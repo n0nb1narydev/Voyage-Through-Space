@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
         private GameObject _enemyContainer;
     [SerializeField]
         private GameObject _borgCubePrefab;
-        private bool _stopSpawning = true;
+        private bool _stillSpawning = true;
     [SerializeField]
         private GameObject[] powerups;
     void Start()
@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnRoutine()
     {
-       while(_stopSpawning)
+       while(_stillSpawning)
        {   
            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f),7,0);
            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
-       while(_stopSpawning)
+       while(_stillSpawning)
        {
             yield return new WaitForSeconds(Random.Range(7, 12));
             Vector3 posToSpawn = new Vector3 (Random.Range(-8.0f, 8.0f), 7, 0);
@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
     }
     IEnumerator SpawnBoss()
     {
-        while(_stopSpawning)
+        while(_stillSpawning)
         {
             yield return new WaitForSeconds(Random.Range(10, 30));
             Vector3 posToSpawn = new Vector3(0, 18, 0);
@@ -57,7 +57,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void OnPlayerDeath()
     {
-        _stopSpawning = false;
+        _stillSpawning = false;
     }
     
 }

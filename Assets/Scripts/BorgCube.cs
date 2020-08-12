@@ -11,8 +11,7 @@ public class BorgCube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player player = other.transform.GetComponent<Player>(); 
-        
+  
     }
 
     // Update is called once per frame
@@ -41,7 +40,9 @@ public class BorgCube : MonoBehaviour
 
         if(_lives < 1)
         {
+            ScoreScript.scoreValue += 50;
             Destroy(this.gameObject);
         }
     }
+
 }

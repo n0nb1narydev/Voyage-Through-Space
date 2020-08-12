@@ -9,14 +9,18 @@ public class Player : MonoBehaviour //Unity Specific Term
             private float _speed = 5f; 
         [SerializeField]
             private int _speedMultiplier = 2;
+        [SerializeField]
             private GameObject _laserPrefab;
+        [SerializeField]
             private GameObject _tripleShotPrefab;
         [SerializeField]
             private float _fireRate = 0.15f;
+        
             private float _canFire = -2f;
         [SerializeField]    
             private int _lives = 3;
             private SpawnManager _spawnManager;
+            private UI_Manager _uiManager;
 
             private bool _isTripleShotActive = false;
             private bool _isWarpDriveActive = false;
@@ -24,18 +28,18 @@ public class Player : MonoBehaviour //Unity Specific Term
         
         [SerializeField]
             private GameObject _shieldVisualizer;
-        [SerializeField]
-            private int _score;
 
 
     void Start()
     {
         transform.position = new Vector3(0, -3.8f, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();//Give acces to spawnmanager
+        _uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         if(_spawnManager == null)
         {
             Debug.LogError("The spawn manager is NULL");
         }
+       
     }
 
     void Update() // runs 60 frames per second
@@ -109,7 +113,9 @@ public class Player : MonoBehaviour //Unity Specific Term
             return;
         } else 
         {
-        _lives--;
+            _lives--;
+           
+            _uiManager.UpdateLives(_lives);
         }
 
         if(_lives < 1)

@@ -32,9 +32,9 @@ public class Enemy : MonoBehaviour
         if(other.tag == "Player")
         {
             
-            if (player != null) // Null Checking
+            if (_player != null) // Null Checking
             {
-                player.Damage();
+                _player.Damage();
             }
 
             Destroy(this.gameObject); 
@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
         
         if (other.tag == "Laser")
         {
+            ScoreScript.scoreValue += 10;
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
