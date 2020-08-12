@@ -55,6 +55,7 @@ public class Powerup : MonoBehaviour
                         player.WarpDriveActive();
                         break;
                     case 2:
+                        player.ShieldsUpActive();
                         break;
                     //default: would be the else
                 }

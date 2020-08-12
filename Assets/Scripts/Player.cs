@@ -12,6 +12,8 @@ public class Player : MonoBehaviour //Unity Specific Term
         [SerializeField]
             private GameObject _laserPrefab;
         [SerializeField]
+            private GameObject _tripleShotPrefab;
+        [SerializeField]
             private float _fireRate = 0.15f;
             private float _canFire = -2f;
         [SerializeField]    
@@ -22,7 +24,8 @@ public class Player : MonoBehaviour //Unity Specific Term
         [SerializeField]
             private bool _isWarpDriveActive = false;
         [SerializeField]
-            private GameObject _tripleShotPrefab;
+            private bool _isShieldsUpActive = false;
+        
         
         
 
@@ -100,7 +103,13 @@ public class Player : MonoBehaviour //Unity Specific Term
     }
     public void Damage()
     {
+        if(_isShieldsUpActive == true)
+        {
+            _lives = _lives;
+        } else 
+        {
         _lives--;
+        }
 
         if(_lives < 1)
         {
@@ -130,5 +139,16 @@ public class Player : MonoBehaviour //Unity Specific Term
         yield return new WaitForSeconds(5.0f);
        
         _isWarpDriveActive = false;
+    }
+    public void ShieldsUpActive()
+    {
+        _isShieldsUpActive = true;
+
+        StartCoroutine(ShieldsUpPowerDown());
+    }
+    IEnumerator ShieldsUpPowerDown()
+    {
+        yield return new WaitForSeconds (5.0f);
+        _isShieldsUpActive = false;
     }
 }
