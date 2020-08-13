@@ -9,10 +9,22 @@ public class Enemy : MonoBehaviour
         private GameObject _enemyPrefab;
 
         private Player _player;
+        private Animator _anim;
 
     void Start() 
     {
-        _player = GameObject.Find("Player").GetComponent<Player>(); 
+        _player = GameObject.Find("Player").GetComponent<Player>(); //null check
+            if(_player == null)
+            {
+                Debug.LogError("Component: Player not found.");
+            }
+
+        _anim = GetComponent<Animator>();
+        if(_anim == null)
+            {
+                Debug.LogError("Component: Animator not found.");
+            }
+
     }
     // Update is called once per frame
     void Update()
@@ -36,15 +48,22 @@ public class Enemy : MonoBehaviour
             {
                 _player.Damage();
             }
+            
+            _anim.SetTrigger("OnEnemyDeath");
+            _speed = 0.2f;
+            Destroy(this.gameObject, 2.8f); 
 
-            Destroy(this.gameObject); 
         }
         
         if (other.tag == "Laser")
         {
             ScoreScript.scoreValue += 10;
             Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            
+            _anim.SetTrigger("OnEnemyDeath");
+            _speed = 0.2f;
+            Destroy(this.gameObject, 2.8f);
+
         }
     }
 }
