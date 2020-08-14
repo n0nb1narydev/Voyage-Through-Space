@@ -17,6 +17,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField]
         private Text _How_to_Text;
         private Astroid _astroid;
+        private Player _player;
 
     public GameManager _gameManager;
         
@@ -27,6 +28,7 @@ public class UI_Manager : MonoBehaviour
          _gameOverText.gameObject.SetActive(false); 
          _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
          _astroid = GameObject.Find("Astroid").GetComponent<Astroid>();
+         _player = GameObject.Find("Player").GetComponent<Player>();
       
     }
     // Update is called once per frame
@@ -55,6 +57,7 @@ public class UI_Manager : MonoBehaviour
             _gameManager.GameOver();
            _gameOverText.gameObject.SetActive(true);
            _restartText.gameObject.SetActive(true);
+           Destroy(_player.gameObject, 1f);
            StartCoroutine(FlashingGameOverText());
 
     }

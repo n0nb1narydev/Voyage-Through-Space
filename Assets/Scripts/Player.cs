@@ -28,7 +28,12 @@ public class Player : MonoBehaviour //Unity Specific Term
             private bool _isWarpDriveActive = false;
         [SerializeField]
             public bool _isShieldsUpActive = false;
-        
+        [SerializeField]
+            private GameObject _twoLives;
+        [SerializeField]
+            private GameObject _oneLife;
+        [SerializeField]
+            private GameObject _dead;
         [SerializeField]
             public GameObject _shieldVisualizer;
         
@@ -54,6 +59,22 @@ public class Player : MonoBehaviour //Unity Specific Term
         {
             FireLaser();
         }
+       switch (lives)
+       {
+            case 2:
+                _twoLives.SetActive(true);
+                break;
+            case 1:
+                _oneLife.SetActive(true);
+                break;
+            case 0:
+                _twoLives.SetActive(false);
+                _oneLife.SetActive(false);
+                _dead.SetActive(true);
+                break;
+
+
+       }
     }   
          
 
@@ -118,7 +139,6 @@ public class Player : MonoBehaviour //Unity Specific Term
         } else
         {
             lives--;
-           
             _uiManager.UpdateLives(lives);
            
         }
@@ -126,7 +146,7 @@ public class Player : MonoBehaviour //Unity Specific Term
         if(lives < 1)
         {
             _spawnManager.OnPlayerDeath();
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 1.5f);
 
         }
     }

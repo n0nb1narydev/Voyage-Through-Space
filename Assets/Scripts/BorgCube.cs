@@ -35,8 +35,9 @@ public class BorgCube : MonoBehaviour
         } 
         else if(other.tag == "Player" && player._isShieldsUpActive == false)
         {
-            Destroy(other.gameObject);
+            
             player.lives = 0;
+            Destroy(other.gameObject, 1f);
             player._uiManager.UpdateLives(player.lives);  
         }
         else if(other.tag == "Player" && player._isShieldsUpActive == true)
