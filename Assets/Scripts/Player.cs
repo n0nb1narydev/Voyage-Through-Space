@@ -31,6 +31,8 @@ public class Player : MonoBehaviour //Unity Specific Term
         
         [SerializeField]
             private GameObject _shieldVisualizer;
+            
+            public BorgCube borgCube;
         
 
 
@@ -39,12 +41,10 @@ public class Player : MonoBehaviour //Unity Specific Term
         transform.position = new Vector3(0, -3.8f, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();//Give acces to spawnmanager
         _uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
-        if(_spawnManager == null)
-        {
-            Debug.LogError("The spawn manager is NULL");
-        }
-       
-       
+            if(_spawnManager == null)
+            {
+                Debug.LogError("The spawn manager is NULL");
+            }       
     }
 
     void Update() // runs 60 frames per second
@@ -63,8 +63,17 @@ public class Player : MonoBehaviour //Unity Specific Term
             {
                 if(_isShieldsUpActive == true)
                 {
+                    
+                    borgCube = GameObject.Find("BorgCube").GetComponent<BorgCube>();
+                    if(borgCube == null)
+                    {
+                    Debug.LogError("The spawn manager is NULL");
+                    }    
+                    borgCube.deathAnimation.SetActive(true);
+                    Destroy(other.gameObject, 2f);
+                    
+
                     _isShieldsUpActive = false;
-                    Destroy(other.gameObject);
                     _lives --;
                     _shieldVisualizer.SetActive(false);
                      _uiManager.UpdateLives(_lives);
@@ -157,31 +166,31 @@ public class Player : MonoBehaviour //Unity Specific Term
         }
     }
     public void TripleShotActive()
-    {
-        _isTripleShotActive = true;
-        StartCoroutine(TripleShotPowerDown());
-    }
-   
-    IEnumerator TripleShotPowerDown()
-    {
-        yield return new WaitForSeconds(5.0f);
-        _isTripleShotActive = false;
-    }
-    public void WarpDriveActive()
-    {
-        _isWarpDriveActive = true;
+        {
+            _isTripleShotActive = true;
+            StartCoroutine(TripleShotPowerDown());
+        }
     
-        StartCoroutine(WarpDrivePowerDown());
-    }
+    IEnumerator TripleShotPowerDown()
+        {
+            yield return new WaitForSeconds(5.0f);
+            _isTripleShotActive = false;
+        }
+    public void WarpDriveActive()
+        {
+            _isWarpDriveActive = true;
+        
+            StartCoroutine(WarpDrivePowerDown());
+        }
     IEnumerator WarpDrivePowerDown()
-    {
-        yield return new WaitForSeconds(5.0f);
-       
-        _isWarpDriveActive = false;
-    }
+        {
+            yield return new WaitForSeconds(5.0f);
+        
+            _isWarpDriveActive = false;
+        }
     public void ShieldsUpActive()
-    {
-        _isShieldsUpActive = true;
-        _shieldVisualizer.SetActive(true);
-    }
+        {
+            _isShieldsUpActive = true;
+            _shieldVisualizer.SetActive(true);
+        }
 }

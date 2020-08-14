@@ -50,20 +50,26 @@ public class Enemy : MonoBehaviour
             }
             
             _anim.SetTrigger("OnEnemyDeath");
-            _speed = 0.2f;
+            _speed = 0f;
             Destroy(this.gameObject, 2.8f); 
 
         }
         
         if (other.tag == "Laser")
         {
-            ScoreScript.scoreValue += 10;
-            Destroy(other.gameObject);
             
+            Destroy(other.gameObject);
             _anim.SetTrigger("OnEnemyDeath");
-            _speed = 0.2f;
-            Destroy(this.gameObject, 2.8f);
+            _speed = 0f;
+            Destroy(this.gameObject, 1.8f);
+            ScoreScript.scoreValue += 10;
+                    // Bug: Score adds whil animation is still occuring if shot
 
         }
     }
+    // private IEnumerator ScoreAdd()
+    // {
+    //     yield return new WaitForSeconds(2.5f);
+        
+    // }
 }
