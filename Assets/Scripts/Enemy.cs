@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
         private Player _player;
         private Animator _anim;
+        private bool isAlive = true;
 
     void Start() 
     {
@@ -57,19 +58,19 @@ public class Enemy : MonoBehaviour
         
         if (other.tag == "Laser")
         {
+            while(isAlive == true)
+            {
+                ScoreScript.scoreValue += 10;
+                isAlive = false;
+            }
             
             Destroy(other.gameObject);
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0f;
             Destroy(this.gameObject, 1f);
-            ScoreScript.scoreValue += 10;
-                    // Bug: Score adds whil animation is still occuring if shot
 
         }
     }
-    // private IEnumerator ScoreAdd()
-    // {
-    //     yield return new WaitForSeconds(2.5f);
-        
-    // }
+  
+    
 }

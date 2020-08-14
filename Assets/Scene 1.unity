@@ -1036,7 +1036,8 @@ MonoBehaviour:
   _tripleShotPrefab: {fileID: 8301980735187037488, guid: 27f73a6af493145e39901a76841abe29,
     type: 3}
   _fireRate: 0.15
-  _lives: 3
+  lives: 3
+  _uiManager: {fileID: 0}
   _isTripleShotActive: 0
   _isWarpDriveActive: 0
   _isShieldsUpActive: 0
@@ -1207,25 +1208,6 @@ MonoBehaviour:
   - {fileID: 5636867573417148946, guid: 4b8b331b3ac1e479bba8356ea68a7bfb, type: 3}
   - {fileID: 4808046114438097794, guid: 92fe5b70280324eb4badcb8952ff9b7e, type: 3}
   - {fileID: 5362637987450031954, guid: 5fdd649b78da74607b0821744de6abcd, type: 3}
---- !u!1 &1615831935 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8518338004569260002, guid: ba415346a5020407e872a56d8af898ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 8518338002961882269}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1615831938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615831935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 024dea1f5b7274782b40c4bd0e4f2e47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
 --- !u!1 &1637893083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,13 +1420,7 @@ PrefabInstance:
     - target: {fileID: 8518338004569260002, guid: ba415346a5020407e872a56d8af898ab,
         type: 3}
       propertyPath: m_Name
-      value: Asteroid
+      value: Astroid
       objectReference: {fileID: 0}
-    - target: {fileID: 8518338004569260002, guid: ba415346a5020407e872a56d8af898ab,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -2318184660848342872, guid: ba415346a5020407e872a56d8af898ab, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba415346a5020407e872a56d8af898ab, type: 3}

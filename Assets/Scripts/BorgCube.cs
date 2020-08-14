@@ -10,6 +10,7 @@ public class BorgCube : MonoBehaviour
         private float _speed = 2f; 
         public Animator deathAnimation;
         public Player player;
+        private bool isAlive = true;
 
     
 
@@ -57,20 +58,19 @@ public class BorgCube : MonoBehaviour
         _lives--;
 
             if(_lives == 0)
+            
             {
+                while(isAlive == true)
+                {
+                    ScoreScript.scoreValue += 100;
+                    isAlive = false;
+                }
             
             DestroyCubeAnim();
             Destroy(this.gameObject, 1f);
-            
-                    // Bug: Score adds whil animation is still occuring if shot
+        
             }
     }
-
-    // private IEnumerator ScoreAdd()
-    // {
-    //     yield return new WaitForSeconds(2.5f);
-        
-    // }
     public void DestroyCubeAnim()
     {
         deathAnimation.SetTrigger("OnDeath");
