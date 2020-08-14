@@ -9,10 +9,12 @@ public class Astroid : MonoBehaviour
     [SerializeField]
         private GameObject _explosionAnim;
         public bool isAlive = true;
+        private SpawnManager _spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -21,12 +23,14 @@ public class Astroid : MonoBehaviour
         //rotate object on zed access 3f
         transform.Rotate(Vector3.forward * _speed * Time.deltaTime);
     }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Laser")
         {
             _explosionAnim.SetActive(true);
             Destroy(other.gameObject);
+            _spawnManager.StartSpawning();
             Destroy(this.gameObject, 1f);
             isAlive = false;
         }

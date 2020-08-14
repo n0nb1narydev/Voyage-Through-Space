@@ -14,13 +14,19 @@ public class SpawnManager : MonoBehaviour
         private bool _stillSpawning = true;
     [SerializeField]
         private GameObject[] powerups;
+
+        
     void Start()
     {
-       StartCoroutine(SpawnRoutine());
-       StartCoroutine(SpawnBoss());
-       StartCoroutine(SpawnPowerUps());
-
+           
     }
+    public void StartSpawning()
+    {
+        StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnBoss());
+        StartCoroutine(SpawnPowerUps());
+    }
+    
     void Update()
     {
         
@@ -28,6 +34,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnRoutine()
     {
+         yield return new WaitForSeconds(3f);
        while(_stillSpawning)
        {   
            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f),7,0);
@@ -39,6 +46,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUps()
     {
+        yield return new WaitForSeconds(3f);
        while(_stillSpawning)
        {   
                 yield return new WaitForSeconds(Random.Range(10, 15));
@@ -49,6 +57,7 @@ public class SpawnManager : MonoBehaviour
     }
     IEnumerator SpawnBoss()
     {
+         yield return new WaitForSeconds(3f);
         while(_stillSpawning)
         {
             yield return new WaitForSeconds(Random.Range(20, 35));
