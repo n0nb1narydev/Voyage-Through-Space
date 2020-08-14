@@ -19,9 +19,9 @@ public class Player : MonoBehaviour //Unity Specific Term
         
             private float _canFire = -2f;
         [SerializeField]    
-            private int _lives = 3;
+            public int lives = 3;
             private SpawnManager _spawnManager;
-            private UI_Manager _uiManager;
+            public UI_Manager _uiManager;
         [SerializeField]
             private bool _isTripleShotActive = false;
         [SerializeField]
@@ -30,9 +30,7 @@ public class Player : MonoBehaviour //Unity Specific Term
             public bool _isShieldsUpActive = false;
         
         [SerializeField]
-            private GameObject _shieldVisualizer;
-            
-            public BorgCube borgCube;
+            public GameObject _shieldVisualizer;
         
 
 
@@ -45,6 +43,7 @@ public class Player : MonoBehaviour //Unity Specific Term
             {
                 Debug.LogError("The spawn manager is NULL");
             }       
+        
     }
 
     void Update() // runs 60 frames per second
@@ -56,41 +55,7 @@ public class Player : MonoBehaviour //Unity Specific Term
             FireLaser();
         }
     }   
-       
-    private void OnTriggerEnter2D(Collider2D other)
-        {
-            if(other.tag == "BorgCube")
-            {
-                if(_isShieldsUpActive == true)
-                {
-                    
-                    borgCube = GameObject.Find("BorgCube").GetComponent<BorgCube>();
-                    if(borgCube == null)
-                    {
-                    Debug.LogError("The spawn manager is NULL");
-                    }    
-                    borgCube.deathAnimation.SetActive(true);
-                    Destroy(other.gameObject, 2f);
-                    
-
-                    _isShieldsUpActive = false;
-                    _lives --;
-                    _shieldVisualizer.SetActive(false);
-                     _uiManager.UpdateLives(_lives);
-                } else 
-                {
-                    _lives = 0;
-                     _uiManager.UpdateLives(_lives);    
-                    Destroy(this.gameObject);
-                    Destroy(other.gameObject);
-                }
-            } else
-            {
-                return;
-            }
-        }
-
-        
+         
 
 
 
@@ -152,13 +117,13 @@ public class Player : MonoBehaviour //Unity Specific Term
             return;
         } else
         {
-            _lives--;
+            lives--;
            
-            _uiManager.UpdateLives(_lives);
+            _uiManager.UpdateLives(lives);
            
         }
 
-        if(_lives < 1)
+        if(lives < 1)
         {
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);

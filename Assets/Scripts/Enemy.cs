@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
             
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0f;
-            Destroy(this.gameObject, 2.8f); 
+            Destroy(this.gameObject, 1f); 
 
         }
         
@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0f;
-            Destroy(this.gameObject, 1.8f);
+            Destroy(this.gameObject, 1f);
             ScoreScript.scoreValue += 10;
                     // Bug: Score adds whil animation is still occuring if shot
 

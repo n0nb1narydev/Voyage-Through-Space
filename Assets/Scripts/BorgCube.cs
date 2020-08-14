@@ -8,14 +8,16 @@ public class BorgCube : MonoBehaviour
         private int _lives = 20;
     [SerializeField]
         private float _speed = 2f; 
-        private Animator _anim;
-    [SerializeField]
-        public GameObject deathAnimation;
+        public Animator deathAnimation;
+        public Player player;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        _anim = GetComponent<Animator>();
+        deathAnimation = GetComponent<Animator>();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,25 @@ public class BorgCube : MonoBehaviour
         {
             this.Damage();
             Destroy(other.gameObject);
+        } 
+        else if(other.tag == "Player" && player._isShieldsUpActive == false)
+        {
+            Destroy(other.gameObject);
+            player.lives = 0;
+            player._uiManager.UpdateLives(player.lives);  
         }
+        else if(other.tag == "Player" && player._isShieldsUpActive == true)
+        {
+            DestroyCubeAnim();
+            Destroy(this.gameObject, 1f);
+
+            player._isShieldsUpActive = false;
+            player.lives --;
+            player._shieldVisualizer.SetActive(false);
+            player._uiManager.UpdateLives(player.lives);
+
+        } 
+        
     }
 
     public void Damage()
@@ -38,16 +58,22 @@ public class BorgCube : MonoBehaviour
 
             if(_lives == 0)
             {
-                deathAnimation.SetActive(true);
-                _speed = 0;
-                Destroy(this.gameObject, 1.8f);
-                ScoreScript.scoreValue += 100;
+            
+            DestroyCubeAnim();
+            Destroy(this.gameObject, 1f);
+            
                     // Bug: Score adds whil animation is still occuring if shot
             }
     }
+
     // private IEnumerator ScoreAdd()
     // {
     //     yield return new WaitForSeconds(2.5f);
         
     // }
+    public void DestroyCubeAnim()
+    {
+        deathAnimation.SetTrigger("OnDeath");
+        _speed = 0f;
+    }
 }

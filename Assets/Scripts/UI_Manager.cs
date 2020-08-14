@@ -14,6 +14,8 @@ public class UI_Manager : MonoBehaviour
         private Text _gameOverText;
     [SerializeField]
         private Text _restartText;
+    [SerializeField]
+        private Text _How_to_Text;
 
     public GameManager _gameManager;
         
