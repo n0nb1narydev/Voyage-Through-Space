@@ -36,6 +36,8 @@ public class Player : MonoBehaviour //Unity Specific Term
             private GameObject _dead;
         [SerializeField]
             public GameObject _shieldVisualizer;
+        [SerializeField]
+            private GameObject _leftThruster;
         
 
 
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour //Unity Specific Term
        {
             case 2:
                 _twoLives.SetActive(true);
+                _leftThruster.SetActive(false);
                 break;
             case 1:
                 _oneLife.SetActive(true);
